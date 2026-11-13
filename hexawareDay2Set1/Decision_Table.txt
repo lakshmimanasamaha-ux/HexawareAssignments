@@ -1,0 +1,19 @@
+SET 1 - DECISION TABLE
+
+Task | Problem | Data structure / Algorithm | Reason
+1 | Store, insert, search and display 15 product categories | Binary Search Tree (BST) | Keeps values ordered and supports efficient search when the tree is reasonably balanced. Inorder traversal prints sorted categories.
+2 | Find SKU records quickly and handle collisions | Hash table with separate chaining; Java HashMap | Hashing maps a SKU to a bucket. Chaining stores colliding entries in a linked list. HashMap is Java's built-in hash-based map.
+3 | Find microservice deployment order and circular dependencies | Directed graph; BFS, DFS, topological sorting (Kahn's algorithm), cycle detection | A graph represents dependencies. Topological sorting gives an order that respects prerequisites. A cycle means no valid deployment order exists.
+4 | Find the highest request total in any continuous 3-hour period | Sliding Window | Reuses the previous window total by subtracting the outgoing minute and adding the incoming minute. This avoids recalculating every 180-minute total.
+5 | Find all pairs that add up to the gift-card value | Two Pointers | On a sorted array, move the left pointer up for a small sum and the right pointer down for a large sum. This is faster than checking every pair.
+
+NOTES
+- Task 2 timings depend on the computer, Java version, JVM warm-up and system load. Run more than once for a fairer comparison.
+- Task 4 uses generated sample requests-per-minute data. Replace the sample formula with the actual 1,440 values if your instructor provides a dataset.
+- Task 3 stores edges from prerequisite to dependent service for deployment ordering. Thus Inventory -> Pricing -> Cart is the valid deployment direction, while the stated dependency chain can be read as Cart depends on Pricing, which depends on Inventory.
+- Expected time complexities:
+  Task 1: Average O(log n) search/insert in a balanced BST; worst case O(n).
+  Task 2: Average O(1) lookup; worst case O(n) with many collisions.
+  Task 3: BFS, DFS, topological sort and cycle detection: O(V + E).
+  Task 4: O(n) time and O(n) space for the request array.
+  Task 5: O(n) time and O(1) extra space.

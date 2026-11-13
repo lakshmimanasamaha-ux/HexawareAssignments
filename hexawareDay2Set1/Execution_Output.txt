@@ -1,0 +1,51 @@
+===== Task1_BinarySearchTree =====
+BINARY SEARCH TREE - PRODUCT CATEGORIES
+Number of categories inserted: 15
+
+Inorder traversal: Beauty Books Clothing Electronics Footwear Furniture Groceries Jewellery Kitchen Laptops Mobiles Sports Stationery Toys Watches 
+Preorder traversal: Electronics Clothing Books Beauty Furniture Footwear Sports Groceries Jewellery Kitchen Mobiles Laptops Toys Stationery Watches 
+Postorder traversal: Beauty Books Clothing Footwear Laptops Mobiles Kitchen Jewellery Groceries Stationery Watches Toys Sports Furniture Electronics 
+
+Search for 'Mobiles': true
+Search for 'Medicines': false
+
+===== Task2_HashTableAndHashMap =====
+HASH TABLE WITH CHAINING
+SKU-101 index: 1
+SKU-106 index: 1
+Both keys are stored in the same bucket (collision).
+Value for SKU-101: Wireless Mouse
+Value for SKU-106: Keyboard
+
+LOOKUP COMPARISON FOR 100000 SKUs
+Custom hash table: 100000 records found, time = 4540615 ns
+Java HashMap:      100000 records found, time = 5850116 ns
+Note: timings vary by computer and program run.
+
+===== Task3_MicroserviceGraph =====
+MICROSERVICE DEPENDENCY GRAPH
+Dependency chain: Cart -> Pricing -> Inventory
+BFS traversal: Inventory Pricing Payment Cart Order 
+DFS traversal: Inventory Pricing Cart Payment Order 
+Valid deployment order (BFS): [Inventory, Pricing, Payment, Cart, Order]
+Circular dependency? false
+
+After adding Cart -> Inventory:
+Circular dependency? true
+Deployment order cannot be created because a cycle exists.
+
+===== Task4_SlidingWindow =====
+SLIDING WINDOW - BUSIEST 3 HOURS
+Total minutes of data: 1440
+Window size: 180 minutes
+Busiest period: 01:09 to 04:09
+Total requests in this period: 10781
+Average requests per minute: 59.89
+
+===== Task5_TwoPointers =====
+TWO POINTERS - GIFT CARD PAIRS
+Target value: 100
+10 + 90 = 100
+20 + 80 = 100
+30 + 70 = 100
+40 + 60 = 100

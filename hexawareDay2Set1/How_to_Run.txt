@@ -1,0 +1,25 @@
+SET 1 - HOW TO RUN
+
+Requirements: JDK installed (javac and java commands available).
+
+1. Open Command Prompt or Terminal in this folder.
+2. Compile all programs:
+   javac *.java
+
+3. Run each task separately:
+   java Task1_BinarySearchTree
+   java Task2_HashTableAndHashMap
+   java Task3_MicroserviceGraph
+   java Task4_SlidingWindow
+   java Task5_TwoPointers
+
+Files:
+- Task1_BinarySearchTree.java
+- Task2_HashTableAndHashMap.java
+- Task3_MicroserviceGraph.java
+- Task4_SlidingWindow.java
+- Task5_TwoPointers.java
+- Execution_Output.txt
+- Decision_Table.txt
+
+Each task is a separate Java program. No external libraries are required.
