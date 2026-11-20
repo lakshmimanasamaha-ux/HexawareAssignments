@@ -1,0 +1,103 @@
+BANK LOAN PORTFOLIO – EXPLANATION
+
+This assignment analyses a bank's loans, customers, branches, instalments,
+repayments and guarantors. The SQL file creates the tables, inserts sample
+records and then runs the queries task by task.
+
+DATABASE TABLES
+
+branches – Stores branch name and city.
+customers – Stores customer details.
+loans – Connects a customer with a branch and stores loan amount, date and status.
+loan_installments – Stores instalment due dates, amounts due and amounts paid.
+repayments – Stores repayment transactions made against loans.
+guarantors – Stores the customers who guarantee particular loans.
+
+TASK 1 – TEN REPORT QUERIES
+
+Q1. Loans overdue by more than three instalments
+The loans table is joined with loan_installments because each loan can have
+several instalments. The query selects instalments whose due date has passed
+and whose paid amount is less than the amount due. GROUP BY collects the
+instalments for each loan, and HAVING COUNT(*) > 3 returns loans with at least
+four overdue instalments.
+
+Q2. Customers with loans in more than one branch
+The customers table is joined with loans to identify the branches in which
+each customer has borrowed. COUNT(DISTINCT branch_id) counts each branch once.
+HAVING keeps customers whose branch count is greater than one.
+
+Q3. Guarantors who are also borrowers
+The guarantor_customer_id is matched with customers.customer_id and
+loans.customer_id. This identifies customers who are guarantors and have
+taken a loan themselves.
+
+Q4. Branches with no loans
+NOT EXISTS checks whether a loan is present for each branch. A branch is
+displayed only when no matching loan record exists.
+
+Q5. Total loan amount for each customer
+The query joins customers with loans and uses SUM to calculate each
+customer's total loan exposure. GROUP BY produces one result per customer.
+
+Q6. Total loans and loan amount for each branch
+A LEFT JOIN keeps all branches, including branches without loans. COUNT
+counts the loans and SUM calculates the total loan amount. COALESCE displays
+zero when a branch has no matching loans.
+
+Q7. Loans greater than the overall average loan amount
+The subquery calculates the average loan amount across all loans. The outer
+query displays loans whose amount is greater than that average.
+
+Q8. Customers with more than one loan
+The query groups loans by customer and counts the number of loans. HAVING
+filters the grouped results to customers with more than one loan.
+
+Q9. Highest loan amount in each branch
+The query joins branches with loans and uses MAX to find the highest
+individual loan amount for every branch.
+
+Q10. Active loans with customer and branch details
+The query joins loans with customers and branches to display the borrower,
+branch and loan amount. The WHERE condition selects active loans.
+
+TASK 2 – CORRELATED AND UNCORRELATED SUBQUERIES
+
+Q1. Correlated subquery
+The query first calculates each customer's total loan exposure in each
+branch. The subquery calculates the average exposure for the branch in the
+current outer row. It refers to the outer query's branch_id, so it is a
+correlated subquery. The result contains customers whose exposure is above
+their branch average.
+
+Q2. Uncorrelated approach
+The query calculates customer exposure and branch averages separately.
+The main query joins these results using branch_id and compares the exposure
+with the average. The average calculation does not refer to the current
+outer row, so it is an uncorrelated/independently calculated approach.
+
+TASK 3 – EXISTS AND NOT EXISTS
+
+The query uses EXISTS to confirm that a customer has at least one loan.
+NOT EXISTS checks that the customer has no repayment record in the last
+60 days for any of their loans. This includes customers who have never made
+a repayment.
+
+TASK 4 – NESTED SUBQUERY
+
+The innermost query calculates the highest loan amount for each branch.
+The next query calculates the average of those branch maximums. The outer
+query displays branches whose highest loan is greater than that average.
+The nested structure is used because the branch maximums must be calculated
+before their average can be found.
+
+IMPORTANT NOTES
+
+The SQL file is written for PostgreSQL (psql). The sample data is included
+so the script can be executed as a complete example. The overdue condition
+uses due_date before CURRENT_DATE and amount_paid lower than amount_due.
+The 60-day period is measured backward from CURRENT_DATE.
+
+The bank-loan task sheet does not provide an exact database schema or sample
+records. The tables and sample data in the SQL file are therefore created
+for this assignment and can be adjusted to match the database used in class.
